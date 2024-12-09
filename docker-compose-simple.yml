@@ -1,0 +1,20 @@
+
+version: "3.6"
+services:
+    botpress:
+        image: botpress/server
+        ports:
+        - 3000:3000
+        container_name: botpress
+        volumes:
+        - botpress-data:/app/data
+        environment:
+        - API_URL=${API_URL}
+        networks:
+        - rede-host
+
+
+volumes:
+  botpress-data:
+networks:
+  rede-host:

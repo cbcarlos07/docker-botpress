@@ -1,0 +1,26 @@
+services:      
+  botpress:
+    image: botpress/server:v12_25_0
+    volumes:
+      - botpress-data:/botpress/data
+    environment:
+      - BP_CONFIG_HTTPSERVER_HOST=0.0.0.0
+      - BP_MODULE_NLU_DUCKLINGURL=https://duckling.botpress.io/
+      - EXTERNAL_URL=http://ENDERECO_EXTERNO_DO_BOTPRESS:3000/
+    ports:
+       - 3000:3000
+    networks:
+      - web
+      - rocketchat
+    healthcheck:
+      disable: true
+
+volumes:
+  botpress-data:
+    driver: local
+      
+networks:
+  web:
+    external: true
+  rocketchat:
+    external: true
